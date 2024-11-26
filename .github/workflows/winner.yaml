@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: 🎉 Pick a Winner
       run: |
-        WINNER=$(jq -r '. | .[rand | floor]' usernames.json)
+        TOTAL=$(jq 'length' usernames.json)
+        RANDOM_INDEX=$((RANDOM % TOTAL))
+        WINNER=$(jq -r ".[$RANDOM_INDEX]" usernames.json)
         echo "🏆 Winner: $WINNER"
-      env:
-        rand: $RANDOM
