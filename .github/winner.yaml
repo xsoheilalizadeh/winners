@@ -1,0 +1,24 @@
+name: Pick The Winner 🏆
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  pick-winner:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Load Username List
+        id: load
+        run: |
+          echo "::set-output name=users::$(cat usernames.json)"
+
+      - name: Pick a Random Winner
+        id: random-winner
+        run: |
+          echo "Random Winner: $(jq -r '. | .[random % length]' <<< '${{ steps.load.outputs.users }}')"
