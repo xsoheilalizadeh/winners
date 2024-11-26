@@ -6,6 +6,7 @@ on:
 jobs:
   pick-winner:
     runs-on: ubuntu-latest
+
     steps:
     - name: 🎉 Pick a Winner
       run: |
