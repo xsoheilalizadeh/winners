@@ -8,7 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 🎉 Pick a Winner
+    - name: 🎉 Checkout Code
+      uses: actions/checkout@v4
+
+    - name: 🎰 Pick a Winner
       run: |
         TOTAL=$(jq 'length' usernames.json)
         RANDOM_INDEX=$((RANDOM % TOTAL))
